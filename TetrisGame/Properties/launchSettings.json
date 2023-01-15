@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "TetrisGame": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "figures_file": "/figures.json",
+        "field_height": "20",
+        "field_width": "15"
+      }
+    }
+  }
+}

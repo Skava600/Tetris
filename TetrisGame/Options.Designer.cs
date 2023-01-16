@@ -42,16 +42,13 @@
             // 
             // saveButton
             // 
-            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.saveButton.Font = new System.Drawing.Font("Georgia", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.saveButton.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
             this.saveButton.IconColor = System.Drawing.Color.Black;
             this.saveButton.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.saveButton.IconSize = 32;
             this.saveButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.saveButton.Location = new System.Drawing.Point(109, 280);
+            this.saveButton.Location = new System.Drawing.Point(109, 222);
             this.saveButton.Name = "saveButton";
             this.saveButton.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.saveButton.Size = new System.Drawing.Size(171, 60);
@@ -62,16 +59,13 @@
             // 
             // closeButton
             // 
-            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.closeButton.Font = new System.Drawing.Font("Georgia", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.closeButton.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
             this.closeButton.IconColor = System.Drawing.Color.Black;
             this.closeButton.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.closeButton.IconSize = 32;
             this.closeButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.closeButton.Location = new System.Drawing.Point(109, 357);
+            this.closeButton.Location = new System.Drawing.Point(109, 309);
             this.closeButton.Name = "closeButton";
             this.closeButton.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.closeButton.Size = new System.Drawing.Size(171, 60);
@@ -86,11 +80,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.heightTrackBar.Cursor = System.Windows.Forms.Cursors.No;
-            this.heightTrackBar.Location = new System.Drawing.Point(83, 22);
+            this.heightTrackBar.Location = new System.Drawing.Point(89, 71);
             this.heightTrackBar.Maximum = 40;
             this.heightTrackBar.Minimum = 20;
             this.heightTrackBar.Name = "heightTrackBar";
-            this.heightTrackBar.Size = new System.Drawing.Size(261, 56);
+            this.heightTrackBar.Size = new System.Drawing.Size(261, 30);
             this.heightTrackBar.TabIndex = 3;
             this.heightTrackBar.Value = 20;
             this.heightTrackBar.ValueChanged += new System.EventHandler(this.heightTrackBar_ValueChanged);
@@ -102,7 +96,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.heightLabel.AutoSize = true;
             this.heightLabel.Font = new System.Drawing.Font("Georgia", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.heightLabel.Location = new System.Drawing.Point(12, 22);
+            this.heightLabel.Location = new System.Drawing.Point(18, 71);
             this.heightLabel.Name = "heightLabel";
             this.heightLabel.Size = new System.Drawing.Size(65, 21);
             this.heightLabel.TabIndex = 4;
@@ -115,7 +109,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.widthLabel.AutoSize = true;
             this.widthLabel.Font = new System.Drawing.Font("Georgia", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.widthLabel.Location = new System.Drawing.Point(12, 86);
+            this.widthLabel.Location = new System.Drawing.Point(18, 135);
             this.widthLabel.Name = "widthLabel";
             this.widthLabel.Size = new System.Drawing.Size(60, 21);
             this.widthLabel.TabIndex = 5;
@@ -126,11 +120,11 @@
             this.widthTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.widthTrackBar.Location = new System.Drawing.Point(83, 86);
+            this.widthTrackBar.Location = new System.Drawing.Point(89, 135);
             this.widthTrackBar.Maximum = 30;
             this.widthTrackBar.Minimum = 15;
             this.widthTrackBar.Name = "widthTrackBar";
-            this.widthTrackBar.Size = new System.Drawing.Size(261, 56);
+            this.widthTrackBar.Size = new System.Drawing.Size(261, 30);
             this.widthTrackBar.TabIndex = 6;
             this.widthTrackBar.Value = 15;
             this.widthTrackBar.ValueChanged += new System.EventHandler(this.widthTrackBar_ValueChanged);
@@ -139,7 +133,7 @@
             // 
             this.heightValueLabel.AutoSize = true;
             this.heightValueLabel.Font = new System.Drawing.Font("Georgia", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.heightValueLabel.Location = new System.Drawing.Point(348, 23);
+            this.heightValueLabel.Location = new System.Drawing.Point(354, 72);
             this.heightValueLabel.Name = "heightValueLabel";
             this.heightValueLabel.Size = new System.Drawing.Size(31, 21);
             this.heightValueLabel.TabIndex = 7;
@@ -149,7 +143,7 @@
             // 
             this.widthValueLabel.AutoSize = true;
             this.widthValueLabel.Font = new System.Drawing.Font("Georgia", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.widthValueLabel.Location = new System.Drawing.Point(348, 86);
+            this.widthValueLabel.Location = new System.Drawing.Point(354, 135);
             this.widthValueLabel.Name = "widthValueLabel";
             this.widthValueLabel.Size = new System.Drawing.Size(28, 21);
             this.widthValueLabel.TabIndex = 8;
@@ -160,7 +154,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.ClientSize = new System.Drawing.Size(410, 450);
+            this.ClientSize = new System.Drawing.Size(410, 424);
             this.Controls.Add(this.widthValueLabel);
             this.Controls.Add(this.heightValueLabel);
             this.Controls.Add(this.widthTrackBar);
@@ -169,6 +163,8 @@
             this.Controls.Add(this.heightTrackBar);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
+            this.MaximumSize = new System.Drawing.Size(428, 471);
+            this.MinimumSize = new System.Drawing.Size(428, 471);
             this.Name = "Options";
             this.Text = "Options";
             ((System.ComponentModel.ISupportInitialize)(this.heightTrackBar)).EndInit();

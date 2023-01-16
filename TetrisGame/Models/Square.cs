@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TetrisGame.Models
 {
-    internal class Square : ICloneable, IEquatable<Square>
+    internal class Square : ICloneable
     {
         public int X {  get; set; }
         public int Y { get; set; }
@@ -25,16 +25,20 @@ namespace TetrisGame.Models
             return this.MemberwiseClone();
         }
 
-        public bool Equals(Square? other)
-        {
-            if (other == null) return false;
 
-            return this.X == other.X && this.Y == other.Y;
+        public void MoveDown()
+        {
+            Y++;
         }
 
-        public override int GetHashCode()
+        public void MoveRight()
         {
-            return X.GetHashCode() ^ Y.GetHashCode();
+            X++;
+        }
+
+        public void MoveLeft()
+        {
+            X--;
         }
     }
 }

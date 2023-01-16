@@ -37,34 +37,31 @@
             // 
             // saveBlockButton
             // 
+            this.saveBlockButton.BackColor = System.Drawing.Color.Snow;
             this.saveBlockButton.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.saveBlockButton.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            this.saveBlockButton.IconColor = System.Drawing.Color.Black;
+            this.saveBlockButton.IconColor = System.Drawing.Color.ForestGreen;
             this.saveBlockButton.IconFont = FontAwesome.Sharp.IconFont.Regular;
-            this.saveBlockButton.IconSize = 32;
-            this.saveBlockButton.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.saveBlockButton.Location = new System.Drawing.Point(137, 392);
+            this.saveBlockButton.Location = new System.Drawing.Point(271, 372);
             this.saveBlockButton.Name = "saveBlockButton";
-            this.saveBlockButton.Size = new System.Drawing.Size(133, 48);
+            this.saveBlockButton.Size = new System.Drawing.Size(50, 50);
             this.saveBlockButton.TabIndex = 0;
-            this.saveBlockButton.Text = "Save";
-            this.saveBlockButton.UseVisualStyleBackColor = true;
+            this.saveBlockButton.UseVisualStyleBackColor = false;
             this.saveBlockButton.Click += new System.EventHandler(this.saveBlockButton_Click);
             // 
             // cancelSavingButton
             // 
+            this.cancelSavingButton.BackColor = System.Drawing.Color.Snow;
             this.cancelSavingButton.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cancelSavingButton.IconChar = FontAwesome.Sharp.IconChar.Cancel;
-            this.cancelSavingButton.IconColor = System.Drawing.Color.Black;
+            this.cancelSavingButton.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
+            this.cancelSavingButton.IconColor = System.Drawing.Color.Red;
             this.cancelSavingButton.IconFont = FontAwesome.Sharp.IconFont.Regular;
-            this.cancelSavingButton.IconSize = 32;
-            this.cancelSavingButton.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.cancelSavingButton.Location = new System.Drawing.Point(137, 463);
+            this.cancelSavingButton.Location = new System.Drawing.Point(215, 372);
             this.cancelSavingButton.Name = "cancelSavingButton";
-            this.cancelSavingButton.Size = new System.Drawing.Size(133, 45);
+            this.cancelSavingButton.Size = new System.Drawing.Size(50, 50);
             this.cancelSavingButton.TabIndex = 1;
-            this.cancelSavingButton.Text = "Cancel";
-            this.cancelSavingButton.UseVisualStyleBackColor = true;
+            this.cancelSavingButton.UseVisualStyleBackColor = false;
+            this.cancelSavingButton.Click += new System.EventHandler(this.cancelSavingButton_Click);
             // 
             // figureTableLayoutPanel
             // 
@@ -108,12 +105,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.ClientSize = new System.Drawing.Size(390, 555);
+            this.ClientSize = new System.Drawing.Size(390, 479);
             this.Controls.Add(this.figureNameLabel);
             this.Controls.Add(this.figureNameTextBox);
             this.Controls.Add(this.figureTableLayoutPanel);
             this.Controls.Add(this.cancelSavingButton);
             this.Controls.Add(this.saveBlockButton);
+            this.MaximumSize = new System.Drawing.Size(408, 526);
+            this.MinimumSize = new System.Drawing.Size(408, 526);
             this.Name = "NewFigure";
             this.Text = "NewBlock";
             this.ResumeLayout(false);

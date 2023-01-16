@@ -30,7 +30,7 @@ namespace TetrisGame
                     button.Click += (object sender, EventArgs e) =>
                     {
                         var pos = figureTableLayoutPanel.GetCellPosition(button);
-                        ChooseCell(sender, e, new Square(pos.Column, pos.Row));
+                        ChooseCell(sender, e, new Square(pos.Column, pos.Row - 4));
                     };
 
              
@@ -73,7 +73,7 @@ namespace TetrisGame
                 }
             }
 
-            if (!newFigure.Coordinates.Any(c =>c.Y == 0))
+            if (!newFigure.Coordinates.Any(c =>c.Y == -4))
             {
                 MessageBox.Show("First row should contain at least one block.");
                 success = false;
@@ -121,6 +121,11 @@ namespace TetrisGame
                 button.BackColor = Color.Red;
             }
 
+        }
+
+        private void cancelSavingButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

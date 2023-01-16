@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace TetrisGame
 {
     internal class Field
     {
-        public int[,] PlayField;
+        public List<Square[]> PlayField;
         public Figure CurrentFigure { get => currentFigure; }
         public Figure NextFigure { get => nextFigure; }
         public int Height { get => height; }
@@ -22,108 +23,133 @@ namespace TetrisGame
         private Figure[] allFigures = new Figure[0];
         private readonly int height;
         private readonly int width;
-       
 
-        public Field(int height, int width, string figuresFile)
+
+        public Field(int height, int width, Figure[] allFigures)
         {
             this.height = height;
             this.width = width;
-            PlayField = new int[height, width];
-            allFigures = (new FiguresJsonParser(figuresFile).Deserialize()).ToArray();
-            currentFigure = SpawnFigureInMid(CreateFigure());  
-            nextFigure = CreateFigure();
-        }
-
-
-        public Figure CreateFigure()
-        {
-            int index = random.Next(allFigures.Length);
-            return allFigures[index].DeepCopy();
-        }
-
-
-        public bool IsGameOver()
-        {
-            foreach(var square in nextFigure.Coordinates)
+            PlayField = new List<Square[]>();
+            for(int i = 0; i < height; i++)
             {
-                if (PlayField[square.Y, square.X + FieldMid] == 1)
-                    return true;
+                PlayField.Add(new Square[width]);
+            }
+            this.allFigures = allFigures;
+        }
+
+        public void CreateFigure()
+        {
+            int index;
+            if (nextFigure == null)
+            {
+                index = random.Next(allFigures.Length);
+                currentFigure = SpawnFigureInMid(allFigures[index].DeepCopy());
+            }
+            else
+            {
+                currentFigure = SpawnFigureInMid(nextFigure);
             }
 
-            return false;
+            index = random.Next(allFigures.Length);
+            nextFigure = allFigures[index].DeepCopy();
         }
+
+
+        public void AddFigureToBoard()
+        {
+            foreach(var c in currentFigure.Coordinates)
+            {
+                PlayField[c.Y][c.X] = c;
+            }
+        }
+
 
         public void MoveFigureLeft()
         {
-            foreach (var coordinates in currentFigure.Coordinates)
-                coordinates.X--;
 
-            if(IsFigureIntoBarrier())
+            if(IsSaveLeft())
             {
-                foreach (var coordinates in currentFigure.Coordinates)
-                    coordinates.X++;
+                currentFigure.MoveLeft();
             }
         }
 
         public void MoveFigureRight()
         {
-            foreach (var coordinates in currentFigure.Coordinates)
-                coordinates.X++;
-
-            if (IsFigureIntoBarrier())
+            if(IsSaveRight())
             {
-                foreach (var coordinates in currentFigure.Coordinates)
-                    coordinates.X--;
+                currentFigure.MoveRight();
             }
         }
 
         public void MoveFigureDown()
         {
-            foreach (var coordinates in currentFigure.Coordinates)
-                coordinates.Y++;
-
-            if (IsFigureIntoBarrier())
+            if (IsSafeDown())
             {
-                foreach (var coordinates in currentFigure.Coordinates)
-                    coordinates.Y--;
+                currentFigure.MoveDown();
             }
         }
 
-        public bool IsFigureIntoBarrier()
+        public bool IsSafeDown()
         {
-            foreach(var coordinates in currentFigure.Coordinates)
+            foreach(var c  in currentFigure.Coordinates)
             {
-                if (coordinates.Y >= height || coordinates.X>= width ||
-                    coordinates.X < 0 || 
-                    PlayField[coordinates.Y, coordinates.X] == 1)
-                    return true;
+                if (c.Y >=Height - 1)
+                    return false;
+
+                if (c.Y >= 0 && c.Y < Height && PlayField[c.Y + 1][c.X] != null)
+                    return false;
+
+                if (c.Y == -1 && PlayField[0][c.X] != null)
+                    return false;              
             }
 
-            return false;
-        }
+            return true;
+        }     
 
-        public void HandleFigureFalling()
+        public void TryRotateFigure()
         {
-            foreach (var coordinates in currentFigure.Coordinates)
+            Figure t = currentFigure.DeepCopy();
+            t.Rotate();
+            if (IsFigureInField(t))
             {
-                PlayField[--coordinates.Y, coordinates.X] = 1;
-            }
-
-            currentFigure = SpawnFigureInMid(nextFigure);
-            nextFigure = CreateFigure();
-        }
-
-        public void Step()
-        {
-            foreach(var square in currentFigure.Coordinates)
-            {
-                square.Y++;
+                currentFigure.Rotate();
             }
         }
 
-        public void DeleteRow()
+        public void DeleteFullRows()
         {
+            List<int> rowsToDeleting = new List<int>();
+            foreach (Square s in CurrentFigure.Coordinates)
+            {
+                if (!rowsToDeleting.Contains(s.Y))
+                {
+                    rowsToDeleting.Add(s.Y);
+                }
+            }
 
+            rowsToDeleting.Sort();
+
+            foreach (var y in rowsToDeleting)
+            {
+                int count = 0;
+                for (int i = 0; i < Width; i++)
+                {
+                    if (PlayField[y][i] != null)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                if (count == PlayField[y].Length)
+                {
+                    PlayField.RemoveAt(y);
+                    PlayField.Insert(0, new Square[Width]);
+                }
+            }
         }
 
         private  Figure SpawnFigureInMid(Figure figure)
@@ -134,6 +160,47 @@ namespace TetrisGame
             }
 
             return figure;
+        }
+
+        private bool IsFigureInField(Figure figure)
+        {
+            foreach (var c in figure.Coordinates)
+            {
+                if (c.X < 0 || c.X >= Width || c.Y >= Height)
+                    return false;
+
+                if (c.Y >= 0 && PlayField[c.Y][c.X] != null)
+                    return false;
+            }
+
+            return true;
+        }
+
+        private bool IsSaveLeft()
+        {
+            foreach (var c in currentFigure.Coordinates)
+            {
+                if (c.X < 1)
+                    return false;
+
+                if (c.Y >= 0 && c.Y < Height && PlayField[c.Y][c.X - 1] != null)
+                    return false;
+            }
+
+            return true;
+        }
+        private bool IsSaveRight()
+        {
+            foreach (var c in currentFigure.Coordinates)
+            {
+                if (c.X >= Width - 1)
+                    return false;
+
+                if (c.Y >= 0 && c.Y < Height && PlayField[c.Y][c.X + 1] != null)
+                    return false;
+            }
+
+            return true;
         }
     }
 }

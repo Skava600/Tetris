@@ -44,7 +44,7 @@ namespace TetrisGame
             }
             catch
             {
-                MessageBox.Show("Error during deserealization");
+                MessageBox.Show("Error during serealization");
             }
         }
     }

@@ -96,6 +96,7 @@ namespace TetrisGame
             
             figures = figures.Append(newFigure);
             parser.Serialize(figures);
+            this.Close();
         }
 
 

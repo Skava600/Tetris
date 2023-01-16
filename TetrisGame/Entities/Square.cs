@@ -1,6 +1,6 @@
 ﻿namespace TetrisGame.Models
 {
-    internal class Square : ICloneable
+    internal class Square : ICloneable, IEquatable<Square>
     {
         public int X {  get; set; }
         public int Y { get; set; }
@@ -32,6 +32,18 @@
         public void MoveLeft()
         {
             X--;
+        }
+
+        public bool Equals(Square? other)
+        {
+            if (other == null) return false;
+
+            return this.X == other.X && this.Y == other.Y;
+        }
+
+        public override int GetHashCode()
+        {
+            return (X ^ Y).GetHashCode();
         }
     }
 }

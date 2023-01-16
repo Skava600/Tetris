@@ -5,16 +5,22 @@ namespace TetrisGame.Entities
     internal class Field
     {
         public List<Square[]> PlayField;
+
         public Figure CurrentFigure { get => currentFigure; }
         public Figure NextFigure { get => nextFigure; }
+
         public int Height { get => height; }
         public int Width { get => width; }
+
         public int FieldMid { get => (width - 4) / 2; }
+
         private Random random = new Random();
 
         private Figure currentFigure;
         private Figure nextFigure;
+
         private Figure[] allFigures = new Figure[0];
+
         private readonly int height;
         private readonly int width;
 

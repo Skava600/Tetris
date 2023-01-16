@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Design;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TetrisGame.Models;
+﻿using TetrisGame.Models;
 
-namespace TetrisGame
+namespace TetrisGame.Entities
 {
     internal class Field
     {
@@ -30,7 +24,7 @@ namespace TetrisGame
             this.height = height;
             this.width = width;
             PlayField = new List<Square[]>();
-            for(int i = 0; i < height; i++)
+            for (int i = 0; i < height; i++)
             {
                 PlayField.Add(new Square[width]);
             }
@@ -57,7 +51,7 @@ namespace TetrisGame
 
         public void AddFigureToBoard()
         {
-            foreach(var c in currentFigure.Coordinates)
+            foreach (var c in currentFigure.Coordinates)
             {
                 PlayField[c.Y][c.X] = c;
             }
@@ -67,7 +61,7 @@ namespace TetrisGame
         public void MoveFigureLeft()
         {
 
-            if(IsSaveLeft())
+            if (IsSaveLeft())
             {
                 currentFigure.MoveLeft();
             }
@@ -75,7 +69,7 @@ namespace TetrisGame
 
         public void MoveFigureRight()
         {
-            if(IsSaveRight())
+            if (IsSaveRight())
             {
                 currentFigure.MoveRight();
             }
@@ -91,20 +85,20 @@ namespace TetrisGame
 
         public bool IsSafeDown()
         {
-            foreach(var c  in currentFigure.Coordinates)
+            foreach (var c in currentFigure.Coordinates)
             {
-                if (c.Y >=Height - 1)
+                if (c.Y >= Height - 1)
                     return false;
 
                 if (c.Y >= 0 && c.Y < Height && PlayField[c.Y + 1][c.X] != null)
                     return false;
 
                 if (c.Y == -1 && PlayField[0][c.X] != null)
-                    return false;              
+                    return false;
             }
 
             return true;
-        }     
+        }
 
         public void TryRotateFigure()
         {
@@ -152,7 +146,7 @@ namespace TetrisGame
             }
         }
 
-        private  Figure SpawnFigureInMid(Figure figure)
+        private Figure SpawnFigureInMid(Figure figure)
         {
             foreach (var coordinate in figure.Coordinates)
             {

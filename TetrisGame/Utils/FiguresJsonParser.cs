@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 using TetrisGame.Models;
-using System.Text.Json.Serialization;
-using System.Text.Json;
 
-namespace TetrisGame
+namespace TetrisGame.Utils
 {
     internal class FiguresJsonParser
     {
         private string file;
-        public FiguresJsonParser(string file) 
+        public FiguresJsonParser(string file)
         {
             this.file = file;
         }
@@ -26,13 +20,13 @@ namespace TetrisGame
                 figures = JsonSerializer.Deserialize<IEnumerable<Figure>>(json);
 
             }
-            catch 
+            catch
             {
                 MessageBox.Show("Error during deserealization");
                 return Array.Empty<Figure>();
             }
 
-            return figures == null ?  Array.Empty<Figure>() : figures.ToArray();
+            return figures == null ? Array.Empty<Figure>() : figures.ToArray();
         }
 
         public void Serialize(IEnumerable<Figure> figures)
@@ -40,7 +34,7 @@ namespace TetrisGame
             try
             {
                 File.WriteAllText(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "/" + file,
-                                  JsonSerializer.Serialize<IEnumerable<Figure>>(figures, new JsonSerializerOptions { WriteIndented = true}));
+                                  JsonSerializer.Serialize(figures, new JsonSerializerOptions { WriteIndented = true }));
             }
             catch
             {

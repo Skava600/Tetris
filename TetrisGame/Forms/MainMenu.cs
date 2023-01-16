@@ -1,5 +1,3 @@
-using System.Windows.Forms;
-
 namespace TetrisGame
 {
     public partial class MainMenu : Form
